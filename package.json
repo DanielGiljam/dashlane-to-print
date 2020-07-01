@@ -1,0 +1,11 @@
+{
+  "name": "dashlane-to-print",
+  "version": "0.0.0",
+  "description": "Creates a printable PDF out of Dashlane data (JSON format).",
+  "homepage": "https://github.com/DanielGiljam/dashlane-to-print#readme",
+  "bugs": "https://github.com/DanielGiljam/dashlane-to-print/issues",
+  "license": "MIT",
+  "private": true,
+  "author": "Daniel Giljam (https://github.com/DanielGiljam)",
+  "repository": "github:DanielGiljam/dashlane-to-print"
+}
