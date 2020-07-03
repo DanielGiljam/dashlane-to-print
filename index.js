@@ -5,8 +5,25 @@ const {spawn} = require("child_process")
 const {writeFile} = require("fs").promises
 
 const puppeteer = require("puppeteer")
+const yargs = require("yargs")
 
-const nextProcess = spawn("next")
+const args = yargs.options({
+  data: {
+    demandOption: true,
+    description: "Path to input data (Dashlane data).",
+    type: "string",
+  },
+  pdf: {
+    default: "dashlane.pdf",
+    description: "Output file path.",
+    type: "string",
+  },
+}).argv
+
+process.env.DASHLANE_TO_PRINT_DATA_PATH = args.data
+process.env.DASHLANE_TO_PRINT_PDF_PATH = args.pdf
+
+const nextProcess = spawn("next", ["start"])
 console.log("Started Next server...")
 nextProcess.stderr.on("data", (data) => {
   console.error(data.toString().trim())

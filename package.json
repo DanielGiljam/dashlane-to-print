@@ -10,7 +10,11 @@
   "main": "index.js",
   "repository": "github:DanielGiljam/dashlane-to-print",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "tsc": "tsc",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
+    "format": "prettier-eslint --write \"PWD/**/*.{js,jsx,ts,tsx,json}\"",
+    "tlf": "npm run tsc && npm run lint && npm run format"
   },
   "dependencies": {
     "@danielgiljam/eslint-config": "^1.0.1",
@@ -32,6 +36,8 @@
     "puppeteer": "^4.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "typescript": "^3.9.5"
+    "sass": "^1.26.9",
+    "typescript": "^3.9.5",
+    "yargs": "^15.3.1"
   }
 }
