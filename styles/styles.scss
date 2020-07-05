@@ -2,48 +2,69 @@ body {
   font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
 
-ul {
-  list-style-type: none;
-  margin-block-start: 1rem;
-  margin-block-end: 1rem;
-  padding-inline-start: unset;
+section {
+  display: grid;
+  grid-template-columns: 4rem auto;
+  grid-template-rows: 4rem auto;
+  margin-block-start: 2rem;
+  margin-block-end: 2rem;
+  ul {
+    display: grid;
+    grid-column: 2 / 3;
+    grid-gap: 1rem 2rem;
+    grid-row: 1 / 3;
+    grid-template-columns: repeat(2, calc(50% - 1rem));
+    margin-inline-start: 1rem;
+  }
 }
 
-h2 {
-  margin-block-start: unset;
-  margin-block-end: unset;
+ul {
+  list-style-type: none;
+  margin: unset;
+  padding: unset;
+}
+
+h2,
+h3 {
+  margin: unset;
 }
 
 code {
   font-size: 1.5rem;
 }
 
-.passwords {
-  display: grid;
-  grid-template-columns: repeat(2, calc(50% - 1rem));
-  grid-gap: 1rem 2rem;
+.section-id {
+  background: lightgray;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.password-item {
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    margin-inline-start: -1rem;
+    li {
+      font-size: 1.125rem;
+      margin-block-start: 1rem;
+      margin-inline-start: 1rem;
+      span {
+        color: gray;
+        display: block;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+      }
+      &:not(.note) {
+        word-break: break-all;
+      }
+    }
+  }
 }
 
 .domain {
-  opacity: 0.5;
-}
-
-.password-details {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 0 0 -1rem;
-  li {
-    font-size: 1.125rem;
-    margin: 1rem 0 0 1rem;
-    span {
-      display: block;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-    }
-    &:not(.note) {
-      word-break: break-all;
-    }
-  }
+  color: gray;
 }
 
 .password {

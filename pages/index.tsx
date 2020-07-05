@@ -3,15 +3,25 @@ import {promises as fsPromises} from "fs"
 import {GetServerSideProps} from "next"
 import Head from "next/head"
 
-import Password from "../components/Password"
+import PasswordsSection from "../components/PasswordsSection"
 import Dashlane from "../types/dashlane"
 
-interface IndexProps {
-  passwords: Dashlane.Authentifiant[];
+const getSectionId = ({title, domain}: Dashlane.Authentifiant): string => {
+  const firstLetter = (title || domain)[0]
+  return /[^a-z]/i.test(firstLetter)
+    ? /[^0-9]/.test(firstLetter)
+      ? "#"
+      : "0-9"
+    : firstLetter.toUpperCase()
 }
 
-const Index = ({passwords}: IndexProps): JSX.Element => {
-  const title = `Dashlane Export ${new Date().toLocaleString("sv-FI")}`
+const title = `Dashlane Export ${new Date().toLocaleString("sv-FI")}`
+
+interface IndexProps {
+  passwordsSections: {[key: string]: Dashlane.Authentifiant[]};
+}
+
+const Index = ({passwordsSections}: IndexProps): JSX.Element => {
   return (
     <>
       <Head>
@@ -21,24 +31,29 @@ const Index = ({passwords}: IndexProps): JSX.Element => {
         <h1>{title}</h1>
       </header>
       <main>
-        <ul className={"passwords"}>
-          {passwords.map((password) => (
-            <Password key={password.title} {...password} />
-          ))}
-        </ul>
+        {Object.entries(passwordsSections).map(([id, passwords]) => (
+          <PasswordsSection key={id} id={id} passwords={passwords} />
+        ))}
       </main>
     </>
   )
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const data = JSON.parse(
+  const data: {AUTHENTIFIANT?: Dashlane.Authentifiant[]} = JSON.parse(
     await fsPromises.readFile(
       process.env.DASHLANE_TO_PRINT_DATA_PATH as string,
       "utf-8",
     ),
   )
-  return {props: {passwords: data.AUTHENTIFIANT}}
+  const passwordsSections = (data.AUTHENTIFIANT || [])
+    .sort((a, b) => (a.title || a.domain).localeCompare(b.title || b.domain))
+    .reduce<{[key: string]: Dashlane.Authentifiant[]}>((sections, password) => {
+      (sections[getSectionId(password)] =
+        sections[getSectionId(password)] || []).push(password)
+      return sections
+    }, {})
+  return {props: {passwordsSections}}
 }
 
 export default Index
