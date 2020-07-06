@@ -15,8 +15,6 @@ const getSectionId = ({title, domain}: Dashlane.Authentifiant): string => {
     : firstLetter.toUpperCase()
 }
 
-const title = `Dashlane Export ${new Date().toLocaleString("sv-FI")}`
-
 interface IndexProps {
   passwordsSections: {[key: string]: Dashlane.Authentifiant[]};
 }
@@ -25,11 +23,8 @@ const Index = ({passwordsSections}: IndexProps): JSX.Element => {
   return (
     <>
       <Head>
-        <title>{title}</title>
+        <title>Dashlane Export</title>
       </Head>
-      <header>
-        <h1>{title}</h1>
-      </header>
       <main>
         {Object.entries(passwordsSections).map(([id, passwords]) => (
           <PasswordsSection key={id} id={id} passwords={passwords} />
