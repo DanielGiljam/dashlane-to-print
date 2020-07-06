@@ -23,7 +23,9 @@ const Index = ({passwordsSections}: IndexProps): JSX.Element => {
   return (
     <>
       <Head>
-        <title>Dashlane Export</title>
+        <title>{`Dashlane Export ${new Date()
+          .toISOString()
+          .slice(0, 10)}`}</title>
       </Head>
       <main>
         {Object.entries(passwordsSections).map(([id, passwords]) => (

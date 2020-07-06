@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
 const {spawn} = require("child_process")
-const {writeFile} = require("fs").promises
+const {readFile} = require("fs").promises
 
 const puppeteer = require("puppeteer")
 const yargs = require("yargs")
@@ -46,8 +46,20 @@ setTimeout(() => {
     await page.goto("http://localhost:3000", {waitUntil: "networkidle2"})
     console.log("Loaded page.")
     console.log("Writing PDF...")
-    const pdf = await page.pdf({format: "A4"})
-    await writeFile("dashlane.pdf", pdf)
+    await page.pdf({
+      path: process.env.DASHLANE_TO_PRINT_PDF_PATH || "dashlane.pdf",
+      displayHeaderFooter: true,
+      headerTemplate: await readFile("header-template.html", "utf-8"),
+      footerTemplate: await readFile("footer-template.html", "utf-8"),
+      printBackground: true,
+      format: "A4",
+      margin: {
+        top: "20mm",
+        right: "10mm",
+        bottom: "20mm",
+        left: "10mm",
+      },
+    })
     console.log("Wrote PDF.")
     await browser.close()
     console.log("Stopped headless browser.")
