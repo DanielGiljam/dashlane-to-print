@@ -23,7 +23,7 @@
     "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
     "format": "prettier-eslint --write \"PWD/**/*.{js,jsx,ts,tsx,json}\"",
     "tlf": "npm run tsc && npm run lint && npm run format",
-    "prepublish": "npm run build"
+    "prepare": "npm run build"
   },
   "dependencies": {
     "chrome-launcher": "^0.13.3",
