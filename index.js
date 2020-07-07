@@ -6,7 +6,7 @@
 const {spawn} = require("child_process")
 const {readFile} = require("fs").promises
 const {homedir} = require("os")
-const {resolve, sep} = require("path")
+const {resolve} = require("path")
 
 const ChromeLauncher = require("chrome-launcher")
 const puppeteer = require("puppeteer-core")
@@ -33,6 +33,8 @@ const args = yargs
     type: "string",
   }).argv
 
+const win32 = process.platform === "win32"
+
 process.env.DASHLANE_TO_PRINT_DATA_PATH = resolve(
   args["path-to-data"].replace(/^~\//, homedir()),
 )
@@ -40,7 +42,10 @@ process.env.DASHLANE_TO_PRINT_PDF_PATH = resolve(args["output-path"])
 
 const nextProcess = spawn(
   resolve(
-    __dirname.replace(new RegExp(`node_modules${sep}dashlane-to-print$`), ""),
+    __dirname.replace(
+      new RegExp(`node_modules${win32 ? "\\\\" : "/"}dashlane-to-print$`),
+      "",
+    ),
     "node_modules/.bin/next",
   ),
   ["start", __dirname],
