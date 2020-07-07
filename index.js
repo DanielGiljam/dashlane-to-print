@@ -46,7 +46,7 @@ const nextProcess = spawn(
     ),
     "node_modules/.bin/next",
   ),
-  ["start"],
+  ["start", __dirname],
 )
 console.log("Started Next server.")
 nextProcess.stderr.on("data", (data) => {
