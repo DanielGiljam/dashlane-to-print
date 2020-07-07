@@ -40,6 +40,7 @@ process.env.DASHLANE_TO_PRINT_DATA_PATH = resolve(
 )
 process.env.DASHLANE_TO_PRINT_PDF_PATH = resolve(args["output-path"])
 
+console.log("Starting Next server...")
 const nextProcess = spawn(
   resolve(
     __dirname.replace(
@@ -51,7 +52,6 @@ const nextProcess = spawn(
   ["start", __dirname],
   {shell: win32},
 )
-console.log("Started Next server.")
 nextProcess.stderr.on("data", (data) => {
   console.error(data.toString().trim())
 })
@@ -76,13 +76,11 @@ setTimeout(() => {
       startingUrl: "http://localhost:3000",
       chromeFlags: ["--headless", "--disable-gpu"],
     })
-    console.log("Launched Chrome.")
     console.log("Connecting to browser...")
     browser = await puppeteer.connect({
       browserURL: `http://localhost:${chrome.port}`,
       product: "chrome",
     })
-    console.log("Connected to browser.")
     const page = (await browser.pages()).find(
       (page) => page.url() === "http://localhost:3000/",
     )
