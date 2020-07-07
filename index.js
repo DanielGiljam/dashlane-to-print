@@ -38,9 +38,13 @@ process.env.DASHLANE_TO_PRINT_DATA_PATH = resolve(
 )
 process.env.DASHLANE_TO_PRINT_PDF_PATH = resolve(args["output-path"])
 
-const nextProcess = spawn(resolve(__dirname, "node_modules/.bin/next"), [
-  "start",
-])
+const nextProcess = spawn(
+  resolve(
+    __dirname.replace(/node_modules\/dashlane-to-print$/, ""),
+    "node_modules/.bin/next",
+  ),
+  ["start"],
+)
 console.log("Started Next server.")
 nextProcess.stderr.on("data", (data) => {
   console.error(data.toString().trim())
