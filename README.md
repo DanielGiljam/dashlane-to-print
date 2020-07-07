@@ -1,6 +1,6 @@
 # dashlane-to-print
 
-Creates a printable PDF out of Dashlane data (JSON format).
+Creates a printable PDF out of Dashlane data (JSON format). Works on both Windows and macOS.
 
 > NOTE: Currently only handles passwords (authentifiant entries).
 
