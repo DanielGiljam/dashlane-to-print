@@ -31,7 +31,8 @@
     "puppeteer-core": "^5.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "uuid": "^8.2.0"
+    "uuid": "^8.2.0",
+    "yargs": "^15.3.1"
   },
   "devDependencies": {
     "@danielgiljam/eslint-config": "^1.0.1",
@@ -51,8 +52,7 @@
     "prettier-eslint": "^11.0.0",
     "prettier-eslint-cli": "^5.0.0",
     "sass": "^1.26.9",
-    "typescript": "^3.9.5",
-    "yargs": "^15.3.1"
+    "typescript": "^3.9.5"
   },
   "engines": {
     "node": "^12.18.0"
