@@ -82,7 +82,7 @@ setTimeout(() => {
     )
     console.log("Generating PDF...")
     await page.pdf({
-      path: process.env.DASHLANE_TO_PRINT_PDF_PATH || "dashlane.pdf",
+      path: process.env.DASHLANE_TO_PRINT_PDF_PATH,
       displayHeaderFooter: true,
       headerTemplate: await readFile("header-template.html", "utf-8"),
       footerTemplate: await readFile("footer-template.html", "utf-8"),
