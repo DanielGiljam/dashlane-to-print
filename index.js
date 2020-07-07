@@ -108,7 +108,7 @@ setTimeout(() => {
       process.code = error.code
     })
     .finally(() => {
-      console.log("Clearing up...")
+      console.log("Cleaning up...")
       browser.disconnect()
       console.log("Disconnected from browser.")
       return chrome
