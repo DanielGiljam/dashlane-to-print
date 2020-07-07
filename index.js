@@ -87,8 +87,14 @@ setTimeout(() => {
     await page.pdf({
       path: process.env.DASHLANE_TO_PRINT_PDF_PATH,
       displayHeaderFooter: true,
-      headerTemplate: await readFile("header-template.html", "utf-8"),
-      footerTemplate: await readFile("footer-template.html", "utf-8"),
+      headerTemplate: await readFile(
+        resolve(__dirname, "header-template.html"),
+        "utf-8",
+      ),
+      footerTemplate: await readFile(
+        resolve(__dirname, "footer-template.html"),
+        "utf-8",
+      ),
       printBackground: true,
       format: "A4",
       margin: {
