@@ -53,8 +53,6 @@
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-standard": "^4.0.1",
     "prettier": "^2.0.5",
-    "prettier-eslint": "^11.0.0",
-    "prettier-eslint-cli": "^5.0.0",
     "sass": "^1.26.9",
     "typescript": "^3.9.5"
   },
