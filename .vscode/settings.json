@@ -1,9 +1,7 @@
 {
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  },
+  "editor.codeActionsOnSave": ["source.fixAll.eslint", "source.fixAll.format"],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   "editor.tabSize": 2,
   "files.autoGuessEncoding": false,
   "files.encoding": "utf8",

@@ -1,8 +1,5 @@
 #!/usr/bin/env node
 
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
-/* eslint-disable @typescript-eslint/no-var-requires */
-
 const {spawn} = require("child_process")
 const {readFile} = require("fs").promises
 const {homedir} = require("os")
